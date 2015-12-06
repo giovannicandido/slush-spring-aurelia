@@ -1,0 +1,38 @@
+{
+  "name": "slush-spring-aurelia",
+  "description": "Production ready stack to start with modern *FrontEnd* with **Aurelia.io** *Backend* by *Java* **Spring Boot Framework**",
+  "version": "0.1.0-SNAPSHOT",
+  "license": "MIT",
+  "repository": {
+    "type": "git",
+    "url": "git://github.com/giovannicandido/slush-spring-aurelia.git"
+  },
+  "author": {
+    "name": "Giovanni Silva",
+    "email": "giovanni@atende.info",
+    "url": "https://github.com/giovannicandido"
+  },
+  "engines": {
+    "node": ">= 0.12",
+    "npm": ">=1.4.3"
+  },
+  "keywords": [
+    "slushgenerator",
+    "aurelia",
+    "typescript",
+    "springframework",
+    "spring-boot"
+  ],
+  "dependencies": {
+    "fs": "0.0.2",
+    "gulp": "^3.9.0",
+    "gulp-conflict": "^0.4.0",
+    "gulp-install": "^0.6.0",
+    "gulp-rename": "^1.2.2",
+    "gulp-template": "^3.1.0",
+    "gulp-util": "^3.0.7",
+    "iniparser": "^1.0.5",
+    "inquirer": "^0.11.0",
+    "path": "^0.12.7"
+  }
+}

@@ -1,0 +1,36 @@
+plugins {
+    id 'com.moowork.node' version '0.10'
+}
+
+apply plugin: 'java'
+apply plugin: 'com.moowork.node'
+
+version = "<%= appVersion %>"
+
+node {
+    version = '0.12.7'
+    npmVersion = '2.12.1'
+    download = false
+}
+
+jar {
+    baseName "<%= appName %>-client"
+    from 'dist'
+    eachFile { details ->
+        details.path = details.path.startsWith('META-INF') ?: 'static/'+details.path
+    }
+    // Jar contains duplicate empty folders, see Gradle issue:
+    // http://issues.gradle.org/browse/GRADLE-1830
+    // so we need to set includeEmptyDirs to false
+    includeEmptyDirs = false
+
+}
+
+task npmBuild(dependsOn: npmInstall, type: NpmTask) {
+    inputs.dir "src"
+    inputs.file "gulpfile.js"
+    outputs.dir "dist"
+    args = ['run', 'build']
+}
+
+jar.dependsOn npmBuild

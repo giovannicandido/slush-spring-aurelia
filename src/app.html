@@ -1,0 +1,83 @@
+<template>
+  <nav class="uk-navbar">
+    <a href="#" class="uk-navbar-brand">
+      ${router.title}
+    </a>
+    <ul class="uk-navbar-nav">
+      <li repeat.for="row of router.navigation" class="${row.isActive ? 'uk-active': ''}">
+        <a href.bind="row.href">${row.title}</a>
+      </li>
+    </ul>
+    <div class="uk-navbar-flip">
+      <ul class="uk-navbar-nav">
+        <li>
+          <a> Hello ${USER_NAME}</a>
+        </li>
+        <li>
+          <a click.trigger="logout()">Logout</a>
+        </li>
+      </ul>
+      <i if.bind="router.isNavigating" class="fa fa-spinner fa-spin fa-2x navbar-loader"></i>
+    </div>
+  </nav>
+  <div class="uk-container uk-container-center uk-margin-top">
+    <router-view></router-view>
+  </div>
+<div id="error50x" class="uk-modal">
+    <div class="uk-modal-dialog">
+      <a href="" class="uk-modal-close uk-close"></a>
+        <div class="uk-modal-header">
+          Ocoreu algum erro de resposta
+        </div>
+        <div class="uk-vertical-align uk-text-center">
+        <div class="uk-vertical-align-middle uk-container-center">
+        <i class="tm-error-icon uk-icon-frown-o"></i>
+
+        <h1 class="tm-error-headline status"></h1>
+        <h2>Resposta do servidor:</h2>
+        <h2 class="uk-h3 message"></h2>
+
+        <p>A página ou ação que você tentou fazer retornou um erro e não pode ser completada, tente novamente mais tarde. Se o erro persistir<br class="uk-hidden-small"> abra um chamado em <a href="http://icei.pucminas.br/jira">Suporte Dev</a></p>
+        </div>
+        </div>
+    </div>
+</div>
+<div id="error40x" class="uk-modal">
+    <div class="uk-modal-dialog">
+      <a href="" class="uk-modal-close uk-close"></a>
+        <div class="uk-modal-header">
+          Ocoreu algum erro de requisição
+        </div>
+        <div class="uk-vertical-align uk-text-center">
+        <div class="uk-vertical-align-middle uk-container-center">
+        <i class="tm-error-icon uk-icon-frown-o"></i>
+
+        <h1 class="tm-error-headline status"></h1>
+        <h2>Resposta do servidor:</h2>
+        <h2 class="uk-h3 message"></h2>
+
+        <p>A página ou ação que você procura não existe, ou outro erro de solicitação ocorreu.<br class="uk-hidden-small"> <a href="javascript:history.go(-1)">Volte para página anterior</a>, ou abra um chamado em <a href="http://icei.pucminas.br/jira">Suporte Dev</a></p>
+        </div>
+        </div>
+    </div>
+</div>
+<div id="errorOther" class="uk-modal">
+    <div class="uk-modal-dialog">
+      <a href="" class="uk-modal-close uk-close"></a>
+        <div class="uk-modal-header">
+          Ocoreu algum erro desconhecido
+        </div>
+        <div class="uk-vertical-align uk-text-center">
+        <div class="uk-vertical-align-middle uk-container-center">
+        <i class="tm-error-icon uk-icon-frown-o"></i>
+
+        <h1 class="tm-error-headline status"></h1>
+        <h2>Resposta do servidor:</h2>
+        <h2 class="uk-h3 message"></h2>
+
+        <p>A página ou ação que você tentou fazer retornou um erro desconhecido<br class="uk-hidden-small"> abra um chamado em <a href="http://icei.pucminas.br/jira">Suporte Dev</a></p>
+        </div>
+        </div>
+    </div>
+</div>
+</template>

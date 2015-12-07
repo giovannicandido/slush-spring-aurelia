@@ -4,6 +4,12 @@
 
 See [INSTRUCTIONS.md]
 
+## Requirements
+
+* NodeJS
+* Oracle JDK 8
+* npm install gulp jspm bower slush -g
+
 ## About
 
 Production ready stack to start with modern *FrontEnd* with **Aurelia.io** *Backend* by *Java* **Spring Boot Framework**

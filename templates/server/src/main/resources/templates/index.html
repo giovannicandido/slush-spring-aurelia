@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+
+<html xmlns:th="http://www.thymeleaf.org"
+      xmlns:sec="http://www.thymeleaf.org/extras/spring-security">
+<head>
+    <title>Application</title>
+    <meta charset="UTF-8" />
+    <meta content='width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no' name='viewport'>
+    <!--Cross Site Forge Protection-->
+    <meta name="_csrf" th:content="${_csrf != null ? _csrf.token : 'testing'}"/>
+    <!-- default header name is X-CSRF-TOKEN -->
+    <meta name="_csrf_header" th:content="${_csrf != null ? _csrf.headerName : 'testing'}"/>
+
+    <link rel="shortcut icon" th:href="@{images/favicon.png}">
+    <link rel="stylesheet" th:href="@{styles/app.css}">
+    <script th:inline="javascript">
+    /*<![CDATA[*/
+      var APPLICATION_URL_BASE = /*[[${#mvc.url('IC#index').buildAndExpand()}]]*/ '';
+    /*]]>*/
+    </script>
+    <script th:src="@{js/sockjs.min.js}"></script>
+    <script th:src="@{js/stomp.min.js}"></script>
+
+    <script th:if="${#authorization.expression('isAuthenticated()')}" th:inline="javascript">
+        /*<![CDATA[*/
+        var USER_NAME = /*[[${#authentication != null ? #authentication.details.keycloakSecurityContext.token.name : ''}]]*/ '';
+        /*]]>*/
+    </script>
+</head>
+<body aurelia-app="main" data-uk-observe>
+
+<div class="splash">
+    <div class="description">Loading</div>
+    <div class="loader"></div>
+</div>
+<script th:src="@{jspm_packages/system.js}"></script>
+<script th:src="@{config.js}"></script>
+<!--Local para os arquivos em producao-->
+<script th:if="${!@environment.acceptsProfiles('development')}">
+    System.config({
+        defaultJSExtensions: true,
+        transpiler: "none",
+        paths: {
+            "*": "src/*",
+            "dist/aurelia.js": "aurelia.js",
+            "dist/app-build.js": "app-build.js",
+            "styles/*": "styles/*",
+            "github:*": "jspm_packages/github/*",
+            "npm:*": "jspm_packages/npm/*"
+        }
+    });
+</script>
+<script>
+    System.import('aurelia-bootstrapper');
+</script>
+</body>
+</html>

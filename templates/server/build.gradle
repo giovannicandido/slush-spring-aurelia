@@ -1,0 +1,84 @@
+buildscript {
+    repositories {
+        maven {
+            url "https://plugins.gradle.org/m2/"
+        }
+    }
+    dependencies {
+        classpath "com.github.maiflai:gradle-scalatest:0.9"
+    }
+}
+
+apply plugin: "com.github.maiflai.scalatest"
+
+version = appVersion
+
+springBoot {
+    mainClass = 'framework.Application'
+}
+// Copia o arquivo keycloak-prod.json para keycloak
+task copyKeycloak(type: Copy) {
+    from 'src/main/resources'
+    into 'build/resources/main'
+    include ('keycloak-prod.json')
+    rename ('keycloak-prod.json','keycloak.json')
+}
+
+jar {
+    baseName = "<%= appName %>-server"
+    version = appVersion
+    // Muda o arquivo keycloak antes de fazer o build
+    dependsOn tasks.copyKeycloak
+}
+
+
+
+
+// Executa a task copyKeycloak depois de compilar e antes de rodar o jar
+
+
+// Incremental compilation of scala
+tasks.withType(ScalaCompile) {
+    scalaCompileOptions.useAnt = false
+}
+
+dependencies {
+    compile project(":client")
+    // Spring
+    compile 'org.springframework.boot:spring-boot-starter-thymeleaf',
+            'org.thymeleaf.extras:thymeleaf-extras-springsecurity4',
+            'org.springframework.boot:spring-boot-starter-web',
+            'org.springframework.hateoas:spring-hateoas',
+            'org.springframework.security:spring-security-web:4.0.2.RELEASE',
+            'org.springframework.security:spring-security-core:4.0.2.RELEASE',
+            'org.springframework.security:spring-security-config:4.0.2.RELEASE'
+
+    // nekohtml is required for thymeleaf's LEGACYHTML5 mode
+    runtime 'net.sourceforge.nekohtml:nekohtml'
+    runtime 'org.flywaydb:flyway-core:3.2.1'
+
+    // RestEasy
+    compile 'org.jboss.resteasy:resteasy-client:3.0.13.Final'
+    runtime 'org.jboss.resteasy:resteasy-jackson2-provider:3.0.13.Final'
+
+    // Test
+    testCompile 'junit:junit:4.12',
+                'org.mockito:mockito-core:1.10.19',
+                'com.jayway.jsonpath:json-path:2.0.0',
+                'org.springframework.security:spring-security-test:4.0.2.RELEASE',
+                'org.springframework.boot:spring-boot-starter-test'
+
+    testRuntime 'org.pegdown:pegdown:1.1.0',
+                'org.skyscreamer:jsonassert:1.2.3'
+
+    // Scala
+    compile "org.scala-lang:scala-library:$scalaVersion",
+            "com.typesafe.play:play-json$scalaV:2.4.2",
+            "com.typesafe.slick:slick$scalaV:3.1.0",
+            "com.github.tminglei:slick-pg$scalaV:0.10.2",
+            "org.scala-lang.modules:scala-java8-compat$scalaV:0.7.0"
+
+    // Test scala
+    testCompile "org.scalatest:scalatest$scalaV:2.2.4"
+
+}

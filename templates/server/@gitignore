@@ -1,0 +1,8 @@
+src/main/resources/application-development.yml
+src/main/resources/application-development.properties
+src/test/resources/application-test.properties
+src/test/resources/application-test.yml
+src/it/resources/application-test.yml
+src/it/resources/application-test.properties
+build/
+src/main/resources/keycloak.json

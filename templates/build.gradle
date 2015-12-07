@@ -6,6 +6,7 @@ def gradleDir = "${rootProject.rootDir}/gradle"
 ext {
     scalaVersion = '<%= scalaVersion %>'
     scalaV = '_2.11'
+    appVersion = '<%= appVersion %>'
 }
 
 wrapper.gradleVersion = '2.9'

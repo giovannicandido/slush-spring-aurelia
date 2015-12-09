@@ -36,7 +36,7 @@ gulp.task('build-dev', function(callback) {
   return runSequence(
       'clean',
       ['build-typescript', 'build-html', 'build-less', 'build-sass'],
-      'copy-font-awesome',
+      'copy-fontawesome',
       callback
   );
 });
@@ -59,15 +59,15 @@ gulp.task('copy-resources', function(){
     gulp.src('config.js').pipe(gulp.dest(paths.output));
     // images
     gulp.src('images/**').pipe(gulp.dest(paths.output + 'images/'));
-    // Fonts
-    gulp.src('fonts/**').pipe(gulp.dest(paths.output + 'fonts/'));
 
 });
 
 // Keep bower font-awesome in sync
-gulp.task('copy-font-awesome',function(){
+gulp.task('copy-fontawesome',function(){
   gulp.src('bower_components/font-awesome/fonts/**')
      .pipe(gulp.dest('./fonts/'))
+  gulp.src('bower_components/font-awesome/fonts/**')
+    .pipe(gulp.dest('./dist/fonts/'))
 });
 
 
@@ -75,7 +75,7 @@ gulp.task('build', function(callback) {
   return runSequence(
       'clean',
       ['build-typescript', 'build-html', 'build-less'],
-      'copy-font-awesome',
+      'copy-fontawesome',
       'copy-resources',
       'bundle',
       callback

@@ -62,7 +62,7 @@ public class WebConfig extends WebMvcConfigurerAdapter {
     @Override
     public void addResourceHandlers(ResourceHandlerRegistry registry) {
 
-        boolean devMode = this.env.acceptsProfiles("development");
+        boolean devMode = this.env.acceptsProfiles("dev");
 
         String[] locations = null;
         if (devMode) {
@@ -92,7 +92,7 @@ public class WebConfig extends WebMvcConfigurerAdapter {
     }
 
     protected String getApplicationVersion() {
-        return this.env.acceptsProfiles("development") ? "dev" : this.appVersion;
+        return this.env.acceptsProfiles("dev") ? "dev" : this.appVersion;
     }
 
 }

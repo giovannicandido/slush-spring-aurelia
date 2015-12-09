@@ -36,7 +36,7 @@ class ApplicationSpec extends FlatSpec with TestContextManagement with BeforeAnd
 
   override def beforeAll(): Unit ={
     super.beforeAll()
-    val builder:MockMvcBuilder = MockMvcBuilders.webAppContextSetup(this.wac).apply(springSecurity())
+    val builder:MockMvcBuilder = MockMvcBuilders.webAppContextSetup(this.wac)
     this.mockMvc = builder.build()
   }
 
@@ -44,7 +44,7 @@ class ApplicationSpec extends FlatSpec with TestContextManagement with BeforeAnd
       mockMvc.perform(get("/boum").`with`(user("any"))).andExpect(status().isNotFound())
     }
 
-    it should "redirect the index page to login" in {
-      mockMvc.perform(get("/")).andExpect(status().isFound).andExpect(header().string("Location",containsString("/login")))
+    it should "open index page" in {
+      mockMvc.perform(get("/")).andExpect(status().isOk).andExpect(content().string(containsString("Application")))
     }
 }

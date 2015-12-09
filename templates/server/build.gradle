@@ -76,6 +76,11 @@ dependencies {
             "com.typesafe.play:play-json$scalaV:2.4.2",
             "com.typesafe.slick:slick$scalaV:3.1.0",
             "com.github.tminglei:slick-pg$scalaV:0.10.2",
+            // Slick PG Extensions
+            "com.github.tminglei:slick-pg_joda-time$scalaV:0.10.2",
+            // Slick PG JDK 8 DateTime
+            "com.github.tminglei:slick-pg_date2$scalaV:0.10.2",
+            "com.github.tminglei:slick-pg_play-json$scalaV:0.10.2",
             "org.scala-lang.modules:scala-java8-compat$scalaV:0.7.0"
 
     // Test scala

@@ -60,7 +60,7 @@ gulp.task('copy-resources', function(){
     // images
     gulp.src('images/**').pipe(gulp.dest(paths.output + 'images/'));
     // Fonts
-    gulp.src('fonts/**').pile(gulp.dest(paths.output + 'fonts/'));
+    gulp.src('fonts/**').pipe(gulp.dest(paths.output + 'fonts/'));
 
 });
 

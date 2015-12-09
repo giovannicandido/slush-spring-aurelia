@@ -18,14 +18,6 @@
       var APPLICATION_URL_BASE = /*[[${#mvc.url('IC#index').buildAndExpand()}]]*/ '';
     /*]]>*/
     </script>
-    <script th:src="@{js/sockjs.min.js}"></script>
-    <script th:src="@{js/stomp.min.js}"></script>
-
-    <script th:if="${#authorization.expression('isAuthenticated()')}" th:inline="javascript">
-        /*<![CDATA[*/
-        var USER_NAME = /*[[${#authentication != null ? #authentication.details.keycloakSecurityContext.token.name : ''}]]*/ '';
-        /*]]>*/
-    </script>
 </head>
 <body aurelia-app="main" data-uk-observe>
 

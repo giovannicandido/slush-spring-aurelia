@@ -49,7 +49,7 @@ var defaults = (function () {
           authorName: user.name || '',
           authorEmail: user.email || '',
           scalaVersion: '2.11.7',
-          bootVersion: '1.3.0.RELEASE',
+          bootVersion: '1.3.1.RELEASE',
           projectLocation: projectLocation
       };
   })();

@@ -21,6 +21,6 @@ import java.lang.annotation.Target;
 @Retention(RetentionPolicy.RUNTIME)
 @WebAppConfiguration
 @SpringApplicationConfiguration(classes = {Application.class})
-@ActiveProfiles(value = {"test"})
+@ActiveProfiles(value = {"ci","test"})
 public @interface SpringIntegrationTest {
 }

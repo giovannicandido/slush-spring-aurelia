@@ -9,7 +9,9 @@ cache: true
 env:
   global:
     - SHIPPABLE_REPO_DIR="/home/ciuser/$REPO_NAME"
-    #Github
+    - POSTGRES_PASSWORD=Ili0aigh
+    # You need to create the secured env variable on Shippable console
+    # Github
     - secure: ExSUWtYBtTdg6sN91zr2wCODb2ZBpUU6saHOMgkYlZiP2KGAmpCJOIuAznOTOH4YzFsKMtXp6rjRAsF8f5PQbk7SvH16d1lE09NuFB8rPlJYPP7+EoyhcDF9fdrqBD8OW7exsiLvnXm6ri+32Ilzd1vtHJUKRNlsAxLLyGYn25rKgYQ/ouO4dZ8RPLb5KUT1d4VL75JeNMfXxtkd9vkg8dQrrgyOJQTPXg3P76DIH0eyI+LfsXBZBUHJQR0znxJ/G+Sql9WGtmxx79+xokMcEeswAl1jVYIdqSrmSwWuRbnjWMisGnLxs9H3t7k042HLP2RXLZoFa5L04YB5MqlCvA==
     # Amazon
     - secure: zXleB3utl5j0WnrULbpg70Mws8n2G7FVFDV0/iYk7LbXPrftipjQkYlzj9HjUJUj65d7pWi4OU+2xdQfs/RKtK0vgUwp/n6OzItqPDBs++plQ+Jr1rWMj9Vpp9Ms2uvPYhk9dd9EicZ+jDca3pv9Gh2FrLRAqkWDUecVNqKIcPKc7R/Q1dAorsnZmiMx5wmE/H8OAO4DG3Sm8VEtoDBYVgGUgFXg7QU7cRZJ4pSIdQHSnjIrxPxicHwzwFSe09KM+QPbM9+k0OIccRv3x8C1MBwuiCbfIVPpCMS0J1rVeKCKr8W1FpN2Fu895Ly+CHhAuTDyBFJOk9TL7KuQ7YvcAQ==

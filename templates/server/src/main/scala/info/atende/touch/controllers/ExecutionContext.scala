@@ -3,7 +3,7 @@ package <%= packageName %>.controllers
 import scala.concurrent.ExecutionContextExecutor
 
 /**
- * Change the execution context for rootPackage.controllers. When working with scala futures
+ * Change the execution context for controllers. When working with scala futures
  * @author Giovanni Silva
  */
 object ExecutionContext {

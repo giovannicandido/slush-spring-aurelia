@@ -1,7 +1,7 @@
 package <%= packageName %>;
 
 /**
- * rootPackage.Application rootPackage.Constants.
+ * Application Constants.
  */
 public abstract class Constants {
     // Spring profile for development, production and "fast", see http://jhipster.github.io/profiles.html

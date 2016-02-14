@@ -2,9 +2,9 @@
 
 The server part is made with Spring Framework.
 
-Spring Data and Spring Security are enabled by default, all Spring configurations are located in **server/src/main/java/rootPackage.framework**
+Spring Data and Spring Security are enabled by default, all Spring configurations are located in **server/src/main/java/framework**
 
-The index controller is **server/src/main/java/rootPackage.controllers/IndexController.java** it delegates to a view
+The index controller is **server/src/main/java/controllers/IndexController.java** it delegates to a view
 **server/src/main/resources/templates/index.html**
 
 The server is configured to depend on the client and to build it on jar phase. It is optimized for production on build
@@ -51,13 +51,13 @@ import test.traits.{MockMvcTest, TestContextManagement}
 @SpringIntegrationTest
 class ApplicationSpec extends FlatSpec with TestContextManagement with MockMvcTest {
 
-  "rootPackage.Application"  should "Send 404 on bad request"  in {
+  "Application"  should "Send 404 on bad request"  in {
     mockMvc.perform(get("/boum").`with`(user("any"))).andExpect(status().isNotFound)
   }
 
   it should "Open index page" in {
     mockMvc.perform(get("/"))
-      .andExpect(status().isOk).andExpect(content().string(containsString("rootPackage.Application")))
+      .andExpect(status().isOk).andExpect(content().string(containsString("Application")))
   }
 
   it should "Open page" in {

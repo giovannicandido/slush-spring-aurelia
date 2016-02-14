@@ -5,7 +5,7 @@ This is a developer focus documentation
 ## Project layout
 
     server/  Spring Server Module
-    client/  Single Page Client rootPackage.Application
+    client/  Single Page Client Application
 
 ## Basic Setup
 

@@ -4,6 +4,7 @@
 
 Install the generator with
 
+    npm install slush -g
     npm install slush-spring-aurelia -g
 
 Create a empty project folder

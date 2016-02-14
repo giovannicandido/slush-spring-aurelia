@@ -7,7 +7,9 @@ var gulp = require('gulp'),
     gulpFilter = require('gulp-filter'),
     util = require('gulp-util'),
     path = require('path'),
-    runSequence = require('run-sequence');
+    runSequence = require('run-sequence'),
+    fs = require('fs'),
+    _ = require('lodash');
 
 var finished = function(){
     util.log(util.colors.blue('Carefull with build-less and build-sass at the same time, they '  +
@@ -50,7 +52,8 @@ var defaults = (function () {
           authorEmail: user.email || '',
           scalaVersion: '2.11.7',
           springPlatVersion: '2.0.2.RELEASE',
-          projectLocation: projectLocation
+          projectLocation: projectLocation,
+          packageName: 'com.mycompany.product'
       };
   })();
 var answers = {};
@@ -122,17 +125,57 @@ gulp.task('default', function(done){
         message: 'Spring Platform Version',
         default: defaults.springPlatVersion
       },{
+        name: 'packageName',
+        message: 'Root application package',
+        default: defaults.packageName,
+        validate: function(value){
+          var regex = /^([a-z0-9]+\.)?[a-z0-9][a-z0-9-]*(\.[a-z]+)*$/i
+          if (regex.test(value)) {
+            return true;
+          }
+          else {
+              return value + " is not a domain. The convention is to use a reverse domain without www";
+          }
+        }
+      },{
         type: 'confirm', name: 'moveon', message: 'Continue?'
     }];
-
-  inquirer.prompt(prompts,
-  function (answersUser) {
-    if (!answersUser.moveon) {
-      return done();
-    }
-    answersUser.projectLocation = defaults.projectLocation
-    answers = answersUser
+  answers = loadPreviousAnswers()
+  console.log('These are the previous answers in file slush.json')
+  console.log(answers)
+  if(_.isEmpty(answers)){
+    inquirer.prompt(prompts,
+      function (answersUser) {
+        if (!answersUser.moveon) {
+          return done();
+        }
+        answersUser.projectLocation = defaults.projectLocation
+        answers = answersUser
+        savePreviousAnswers(answers)
+        runSequence('run', 'copy-ignored', finished)
+      });
+  }else{
+    answers.projectLocation = defaults.projectLocation
     runSequence('run', 'copy-ignored', finished)
-  });
-
+  }
 })
+
+function loadPreviousAnswers(){
+  console.log('Loading previous answers')
+  try {
+    var contents = fs.readFileSync('slush.json', 'utf-8')
+    if(contents == undefined && contents == null){
+      return {}
+    }else{
+      return JSON.parse(contents)
+    }
+  } catch (e){
+    return {}
+  }
+
+}
+
+function savePreviousAnswers(answers) {
+  var string = JSON.stringify(answers, null, 4)
+  fs.writeFile('slush.json', string);
+}

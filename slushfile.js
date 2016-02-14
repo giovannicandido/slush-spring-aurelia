@@ -141,8 +141,10 @@ gulp.task('default', function(done){
         type: 'confirm', name: 'moveon', message: 'Continue?'
     }];
   answers = loadPreviousAnswers()
-  console.log('These are the previous answers in file slush.json')
-  console.log(answers)
+  util.log('These are the previous answers in file', util.colors.green('slush.json'))
+  util.log('If not empty, it will be loaded. Except from', util.colors.green('projectLocation'),
+    ' that is recalculated with the current folder')
+  util.log(answers)
   if(_.isEmpty(answers)){
     inquirer.prompt(prompts,
       function (answersUser) {

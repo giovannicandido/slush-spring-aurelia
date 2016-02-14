@@ -1,4 +1,4 @@
-package info.atende.touch.utils
+package <%= packageName %>.utils
 
 /**
  * @author Giovanni Silva

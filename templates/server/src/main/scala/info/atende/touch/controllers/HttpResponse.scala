@@ -1,4 +1,4 @@
-package info.atende.touch.controllers
+package <%= packageName %>.controllers
 
 import org.springframework.http.{HttpHeaders, HttpStatus, ResponseEntity}
 import play.api.libs.json.JsValue

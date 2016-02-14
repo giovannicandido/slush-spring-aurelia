@@ -1,6 +1,6 @@
 import javax.persistence.{EntityManager, PersistenceContext}
 
-import info.atende.touch.entities.Teste
+import <%= packageName %>.entities.Teste
 import org.junit.Test
 import org.junit.runner.RunWith
 import org.scalatest.MustMatchers

@@ -14,7 +14,7 @@ apply plugin: "com.github.maiflai.scalatest"
 version = appVersion
 
 springBoot {
-    mainClass = 'rootPackage.Application'
+    mainClass = '<%= packageName %>.Application'
 }
 // Copia o arquivo keycloak-prod.json para keycloak
 task copyKeycloak(type: Copy) {
@@ -25,7 +25,7 @@ task copyKeycloak(type: Copy) {
 }
 
 jar {
-    baseName = "touch-server"
+    baseName = "<%= appName %>-server"
     version = appVersion
     // Muda o arquivo keycloak antes de fazer o build
     dependsOn tasks.copyKeycloak

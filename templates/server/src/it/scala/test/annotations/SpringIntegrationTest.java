@@ -1,6 +1,6 @@
 package test.annotations;
 
-import info.atende.touch.Application;
+import <%= packageName %>.Application;
 import org.scalatest.TagAnnotation;
 import org.springframework.boot.test.SpringApplicationConfiguration;
 import org.springframework.test.context.ActiveProfiles;

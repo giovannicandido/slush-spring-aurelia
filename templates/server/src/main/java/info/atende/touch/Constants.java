@@ -1,4 +1,4 @@
-package info.atende.touch;
+package <%= packageName %>;
 
 /**
  * rootPackage.Application rootPackage.Constants.

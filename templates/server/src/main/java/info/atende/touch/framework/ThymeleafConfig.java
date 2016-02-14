@@ -1,4 +1,4 @@
-package info.atende.touch.framework;
+package <%= packageName %>.framework;
 
 import org.apache.commons.logging.Log;
 import org.apache.commons.logging.LogFactory;

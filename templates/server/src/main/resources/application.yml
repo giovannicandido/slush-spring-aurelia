@@ -18,7 +18,7 @@ info:
 
 spring:
   main:
-    sources: info.atende.touch.Application
+    sources: <%= packageName %>.Application
   thymeleaf:
     mode: LEGACYHTML5
   jpa:

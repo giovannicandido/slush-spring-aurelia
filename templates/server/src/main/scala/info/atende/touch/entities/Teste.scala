@@ -1,4 +1,4 @@
-package info.atende.touch.entities
+package <%= packageName %>.entities
 
 import javax.persistence.Entity
 import javax.persistence.Id

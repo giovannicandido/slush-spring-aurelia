@@ -1,8 +1,8 @@
-resources.projectroot=/Users/giovanni/Projects/touch
-logging.level.ROOT=WARN
+resources.projectroot=<%= projectLocation %>
+logging.level.ROOT=INFO
 logging.level.org.springframework=WARN
-spring.datasource.url=jdbc:postgresql://localhost/touch_test
-spring.datasource.username=giovanni
+spring.datasource.url=jdbc:postgresql://localhost/<%= appName %>_test
+spring.datasource.username=<%= appName %>
 spring.datasource.password=1234
 spring.datasource.driver-class-name=org.postgresql.Driver
 spring.jpa.database-platform=org.hibernate.dialect.PostgreSQLDialect

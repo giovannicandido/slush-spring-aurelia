@@ -1,4 +1,4 @@
-package info.atende.touch.controllers
+package <%= packageName %>.controllers
 
 import scala.concurrent.ExecutionContextExecutor
 

@@ -10,7 +10,13 @@ var gulp = require('gulp'),
     runSequence = require('run-sequence'),
     fs = require('fs'),
     _ = require('lodash');
-
+// endsWith function
+String.prototype.endsWith = function(suffix) {
+    return this.indexOf(suffix, this.length - suffix.length) !== -1;
+};
+String.prototype.contains = function(other){
+  return this.indexOf(other) > 1;
+}
 var finished = function(){
     util.log(util.colors.blue('Carefull with build-less and build-sass at the same time, they '  +
     'could overwrite files.', util.colors.green('To disable that edit the file client/buildjs/build.js')));
@@ -62,6 +68,8 @@ var filterFiles = [
   '!**/*.jar', '!gradlew', '!gradlew.bat',
   '!client/fonts/**', '!client/images/**','!**/*.jpg','!**/*.png'
 ];
+
+var packageReplacements = ['info/atende/touch']
 gulp.task('run', function (done) {
 
   return gulp.src(__dirname + '/templates/**')  // Note use of __dirname to be relative to generator
@@ -73,7 +81,17 @@ gulp.task('run', function (done) {
       if(file.basename[0] === '@'){
         file.basename = '.' + file.basename.slice(1);
       }
+      // packageName support
+      var newPackage = answers.packageName.split('.').join('/');
+      for(var i=0;i<packageReplacements.length;i++){
+        // startsWith
+        if(file.dirname.contains(packageReplacements[i])){
+          file.dirname = file.dirname.replace(packageReplacements[i], newPackage)
+        }
+      }
+
     }))
+    .pipe(gulpFilter(['**','!server/src/**/info','!server/src/**/info/**'])) // Work around to remove the empty packages
     .pipe(conflict('./'))                    // Confirms overwrites on file conflicts
     .pipe(gulp.dest('./'))                   // Without __dirname here = relative to cwd
     .pipe(install())                         // Run `bower install` and/or `npm install` if necessary

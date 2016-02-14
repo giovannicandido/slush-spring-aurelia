@@ -1,4 +1,4 @@
-package info.atende.touch.framework;
+package <%= packageName %>.framework;
 
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.context.annotation.Configuration;

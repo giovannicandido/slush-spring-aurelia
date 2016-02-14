@@ -1,4 +1,4 @@
-package info.atende.touch.framework;
+package <%= packageName %>.framework;
 
 import org.springframework.boot.context.embedded.ConfigurableEmbeddedServletContainer;
 import org.springframework.boot.context.embedded.EmbeddedServletContainerCustomizer;

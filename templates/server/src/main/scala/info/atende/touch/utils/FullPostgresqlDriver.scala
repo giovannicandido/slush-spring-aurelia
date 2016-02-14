@@ -1,4 +1,4 @@
-package info.atende.touch.utils
+package <%= packageName %>.utils
 
 import com.github.tminglei.slickpg._
 import play.api.libs.json.{JsValue, Json}

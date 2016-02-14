@@ -1,6 +1,6 @@
-package info.atende.touch.framework;
+package <%= packageName %>.framework;
 
-import info.atende.touch.Constants;
+import <%= packageName %>.Constants;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.context.annotation.Bean;

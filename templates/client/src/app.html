@@ -1,0 +1,28 @@
+<template>
+  <require from="components/error-message-modal.html"></require>
+  <nav class="uk-navbar">
+    <a href="#" class="uk-navbar-brand">
+      ${router.title}
+    </a>
+    <ul class="uk-navbar-nav">
+      <li repeat.for="row of router.navigation" class="${row.isActive ? 'uk-active': ''}">
+        <a href.bind="row.href">${row.title}</a>
+      </li>
+    </ul>
+    <div class="uk-navbar-flip">
+      <ul class="uk-navbar-nav">
+        <li>
+          <a> Hello ${USER_NAME}</a>
+        </li>
+        <li>
+          <a click.trigger="logout()">Logout</a>
+        </li>
+      </ul>
+      <i if.bind="router.isNavigating" class="fa fa-spinner fa-spin fa-2x navbar-loader"></i>
+    </div>
+  </nav>
+  <div class="uk-container uk-container-center uk-margin-top">
+    <router-view></router-view>
+  </div>
+  <error-message-modal></error-message-modal>
+</template>

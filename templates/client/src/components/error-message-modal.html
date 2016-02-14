@@ -1,0 +1,21 @@
+<template bindable="header, title, message">
+    <div class="uk-modal">
+        <div class="uk-modal-dialog">
+            <a href="" class="uk-modal-close uk-close"></a>
+            <div class="uk-modal-header">
+                ${header}
+            </div>
+            <div class="uk-vertical-align uk-text-center">
+                <div class="uk-vertical-align-middle uk-container-center">
+                    <i class="tm-error-icon uk-icon-frown-o"></i>
+
+                    <h1 class="tm-error-headline status"></h1>
+                    <h2>${title}</h2>
+                    <h2 class="uk-h3 message"></h2>
+                    <p>${message}</p>
+                </div>
+            </div>
+        </div>
+    </div>
+
+</template>

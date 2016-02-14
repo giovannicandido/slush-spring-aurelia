@@ -16,12 +16,8 @@
         "./**/*.ts",
         "!./node_modules/**/*.ts"
     ],
-    "files": [
-        "./test/app.spec.ts",
-        "./test/converters.spec.ts"
-    ],
-    "exclude": [],
+    "exclude": ["node_modules", "dist"],
     "atom": {
-        "rewriteTsconfig": true
+        "rewriteTsconfig": false
     }
 }

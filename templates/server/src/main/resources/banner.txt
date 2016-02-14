@@ -1,0 +1,11 @@
+
+${AnsiColor.RED}    █████╗  ${AnsiColor.MAGENTA} ████████╗███████╗███╗   ██╗██████╗ ███████╗   ██╗███╗   ██╗███████╗ ██████╗
+${AnsiColor.RED}   ██╔══██╗ ${AnsiColor.MAGENTA} ╚══██╔══╝██╔════╝████╗  ██║██╔══██╗██╔════╝   ██║████╗  ██║██╔════╝██╔═══██╗
+${AnsiColor.RED}   ███████║ ${AnsiColor.MAGENTA}    ██║   █████╗  ██╔██╗ ██║██║  ██║█████╗     ██║██╔██╗ ██║█████╗  ██║   ██║
+${AnsiColor.RED}   ██╔══██║ ${AnsiColor.MAGENTA}    ██║   ██╔══╝  ██║╚██╗██║██║  ██║██╔══╝     ██║██║╚██╗██║██╔══╝  ██║   ██║
+${AnsiColor.RED}   ██║  ██║ ${AnsiColor.MAGENTA}    ██║   ███████╗██║ ╚████║██████╔╝███████╗██╗██║██║ ╚████║██║     ╚██████╔╝
+${AnsiColor.RED}   ╚═╝  ╚═╝ ${AnsiColor.MAGENTA}    ╚═╝   ╚══════╝╚═╝  ╚═══╝╚═════╝ ╚══════╝╚═╝╚═╝╚═╝  ╚═══╝╚═╝      ╚═════╝
+
+
+${AnsiColor.BRIGHT_BLUE}:: Atende  :: Running Spring Boot ${spring-boot.version} ::
+:: https://github.com/giovannicandido/slush-spring-aurelia ::${AnsiColor.DEFAULT}

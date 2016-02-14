@@ -11,7 +11,8 @@
     <!-- default header name is X-CSRF-TOKEN -->
     <meta name="_csrf_header" th:content="${_csrf != null ? _csrf.headerName : 'testing'}"/>
 
-    <link rel="shortcut icon" th:href="@{images/favicon.png}">
+    <link rel="icon" type="image/png" th:href="@{images/favicon-16.png}" sizes="16x16">
+    <link rel="icon" type="image/png" th:href="@{images/favicon-32.png}" sizes="32x32">
     <link rel="stylesheet" th:href="@{styles/app.css}">
     <script th:inline="javascript">
     /*<![CDATA[*/
@@ -19,22 +20,25 @@
     /*]]>*/
     </script>
 </head>
-<body aurelia-app="main" data-uk-observe>
-
-<div class="splash">
-    <div class="description">Loading</div>
-    <div class="loader"></div>
+<body>
+<div class="dev-badge" th:if="${@environment.acceptsProfiles('dev')}"></div>
+<div aurelia-app="main" data-uk-observe>
+    <div class="splash">
+        <div class="description">Loading</div>
+        <div class="loader"></div>
+    </div>
 </div>
+
 <script th:src="@{jspm_packages/system.js}"></script>
 <script th:src="@{config.js}"></script>
 <!--Local para os arquivos em producao-->
-<script th:if="${!@environment.acceptsProfiles('development')}">
+<script th:if="${!@environment.acceptsProfiles('dev')}">
     System.config({
         defaultJSExtensions: true,
         transpiler: "none",
         paths: {
             "*": "src/*",
-            "dist/aurelia.js": "aurelia.js",
+            "dist/vendor-build.js": "vendor-build.js",
             "dist/app-build.js": "app-build.js",
             "styles/*": "styles/*",
             "github:*": "jspm_packages/github/*",

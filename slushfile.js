@@ -12,9 +12,9 @@ var gulp = require('gulp'),
 var finished = function(){
     util.log(util.colors.blue('Carefull with build-less and build-sass at the same time, they '  +
     'could overwrite files.', util.colors.green('To disable that edit the file client/buildjs/build.js')));
-    util.log(util.colors.blue('Please enter in the client directory and run ',
-      util.colors.green('jspm install')));
-    util.log(util.colors.blue('See https://github.com/giovannicandido/slush-spring-aurelia/INSTRUCTIONS.MD',
+    util.log(util.colors.blue('Please run ',
+      util.colors.green('./gradlew initProject')));
+    util.log(util.colors.blue('See docs/',
     'for instructions on how to run, build and use this scafoold'))
   };
 
@@ -49,18 +49,23 @@ var defaults = (function () {
           authorName: user.name || '',
           authorEmail: user.email || '',
           scalaVersion: '2.11.7',
-          bootVersion: '1.3.1.RELEASE',
+          springPlatVersion: '2.0.2.RELEASE',
           projectLocation: projectLocation
       };
   })();
 var answers = {};
+var filterFiles = [
+  '**/**', '!**/*.md','!**/*.MD','!gradle/**',
+  '!**/*.jar', '!gradlew', '!gradlew.bat',
+  '!client/fonts/**', '!client/images/**','!**/*.jpg','!**/*.png'
+];
 gulp.task('run', function (done) {
-  var filterFiles = gulpFilter(['**/**', '!gradle/**']);
+
   return gulp.src(__dirname + '/templates/**')  // Note use of __dirname to be relative to generator
-    .pipe(filterFiles)
-    .pipe(template(answers, {
-        interpolate: /<%=\s([\s\S]+?)%>/g
-      }))                 // Lodash template support
+    .pipe(gulpFilter(filterFiles))
+    .pipe(template(answers,{
+      interpolate: /<%=([\s\S]+?)%>/g
+    }))                 // Lodash template support
     .pipe(rename(function(file){
       if(file.basename[0] === '@'){
         file.basename = '.' + file.basename.slice(1);
@@ -71,16 +76,16 @@ gulp.task('run', function (done) {
     .pipe(install())                         // Run `bower install` and/or `npm install` if necessary
 });
 
-gulp.task('copy-gradle', function(done){
-  return gulp.src(__dirname + '/templates/gradle/**')
-    .pipe(conflict('./templates/gradle', {defaultChoice: 'n'}))
-    .pipe(gulp.dest('./gradle'));
-})
+gulp.task('copy-ignored', function(done){
+  var filesToCopyTmp = filterFiles
+  filesToCopyTmp.splice(0,1)
+  var filesToCopy = filesToCopyTmp.map(function(f){
+    return __dirname + '/templates/' + f.substr(1,f.length)
+  });
 
-gulp.task('copy-src', function(done){
-  return gulp.src(__dirname + '/src/**')
-    .pipe(conflict('./client/src', {defaultChoice: 'n'}))
-    .pipe(gulp.dest('./client/src'));
+  return gulp.src(filesToCopy, {base: __dirname + '/templates'})
+    .pipe(conflict('./', {defaultChoice: 'n'}))
+    .pipe(gulp.dest('./'));
 })
 
 // Lodash tamplate do not work with ES6 copy is need
@@ -91,7 +96,7 @@ gulp.task('default', function(done){
   }
   var prompts = [{
           name: 'appName',
-          message: 'What the name of project?',
+          message: 'What is the name of project?',
           default: defaults.appName
       }, {
           name: 'appDescription',
@@ -113,9 +118,9 @@ gulp.task('default', function(done){
         message: 'Scala Version',
         default: defaults.scalaVersion
       },{
-        name: 'bootVersion',
-        message: 'Spring Boot Version',
-        default: defaults.bootVersion
+        name: 'springPlatVersion',
+        message: 'Spring Platform Version',
+        default: defaults.springPlatVersion
       },{
         type: 'confirm', name: 'moveon', message: 'Continue?'
     }];
@@ -127,7 +132,7 @@ gulp.task('default', function(done){
     }
     answersUser.projectLocation = defaults.projectLocation
     answers = answersUser
-    runSequence('run','copy-gradle','copy-src', finished)
+    runSequence('run', 'copy-ignored', finished)
   });
 
 })

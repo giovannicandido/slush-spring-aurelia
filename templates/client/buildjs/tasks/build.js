@@ -17,8 +17,8 @@ gulp.task('build-typescript', function(){
       .pipe(gulp.dest(paths.output + paths.root))
 });
 
-gulp.task('build-test', function(){
-    var tsResult = gulp.src(paths.specSrc)
+gulp.task('build-test',['build-dev'], function(){
+    var tsResult = gulp.src(paths.source.concat(paths.specSrc))
         .pipe(plumber())
         .pipe(sourcemaps.init())
         .pipe(ts(tsProject, {sortOutput: true}));
@@ -35,8 +35,7 @@ gulp.task('build-html', function(){
 gulp.task('build-dev', function(callback) {
   return runSequence(
       'clean',
-      ['build-typescript', 'build-html', 'build-less', 'build-sass'],
-      'copy-fontawesome',
+      ['build-typescript', 'build-html', 'build-less', 'build-sass', 'copy-fontawesome', 'copy-resources'],
       callback
   );
 });

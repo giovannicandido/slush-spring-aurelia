@@ -5,7 +5,7 @@ buildscript {
         }
     }
     dependencies {
-        classpath "com.github.maiflai:gradle-scalatest:0.9"
+        classpath "com.github.maiflai:gradle-scalatest:0.11"
     }
 }
 
@@ -14,7 +14,7 @@ apply plugin: "com.github.maiflai.scalatest"
 version = appVersion
 
 springBoot {
-    mainClass = 'framework.Application'
+    mainClass = 'rootPackage.Application'
 }
 // Copia o arquivo keycloak-prod.json para keycloak
 task copyKeycloak(type: Copy) {
@@ -25,17 +25,11 @@ task copyKeycloak(type: Copy) {
 }
 
 jar {
-    baseName = "<%= appName %>-server"
+    baseName = "touch-server"
     version = appVersion
     // Muda o arquivo keycloak antes de fazer o build
     dependsOn tasks.copyKeycloak
 }
-
-
-
-
-// Executa a task copyKeycloak depois de compilar e antes de rodar o jar
-
 
 // Incremental compilation of scala
 tasks.withType(ScalaCompile) {
@@ -49,6 +43,8 @@ dependencies {
             'org.thymeleaf.extras:thymeleaf-extras-springsecurity4',
             'org.springframework.boot:spring-boot-starter-web',
             'org.springframework.hateoas:spring-hateoas',
+            'org.springframework.boot:spring-boot-starter-data-jpa',
+            'org.postgresql:postgresql:9.4-1202-jdbc42',
             'org.springframework.security:spring-security-web:4.0.2.RELEASE',
             'org.springframework.security:spring-security-core:4.0.2.RELEASE',
             'org.springframework.security:spring-security-config:4.0.2.RELEASE'

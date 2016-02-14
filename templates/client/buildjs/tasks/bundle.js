@@ -4,22 +4,24 @@ var bundler = require('aurelia-bundler');
 var config = {
   force: true,
   packagePath: '.',
+  baseUrl: '.',
+  configPath: './config.js',
   bundles: {
     "dist/app-build": {
       includes: [
-        '*',
-        '*.html!text',
-        '*.css!text',
-        'uikit/css/uikit.min.css!text'
+        '[**/*.js]',
+        '**/*.html!text',
+        '*.css!text'
       ],
       options: {
         inject: true,
         minify: true
       }
     },
-    "dist/aurelia": {
+    "dist/vendor-build": {
       includes: [
         'aurelia-bootstrapper',
+        'aurelia-framework',
         'aurelia-fetch-client',
         'aurelia-router',
         'aurelia-animator-css',
@@ -28,7 +30,13 @@ var config = {
         'aurelia-templating-router',
         'aurelia-loader-default',
         'aurelia-history-browser',
-        'aurelia-logging-console'
+        'aurelia-logging-console',
+        'uikit/css/uikit.min.css!text',
+        'uikit/js/components/**/*.js',
+        'jquery',
+        'uikit',
+        'fetch',
+
       ],
       options: {
         inject: true,

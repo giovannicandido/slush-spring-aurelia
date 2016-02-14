@@ -29,22 +29,31 @@
 .tm-error-icon {
     font-size: 200px;
 }
-#error50x {
-  .uk-modal-header {
-     background-color: red;
-     color: white;
-  }
-}
-#error40x {
-  .uk-modal-header {
-     background-color: green;
-     color: white;
-  }
+.uk-modal-header.error {
+   background-color: red;
+   color: white;
 }
 
-#errorOther {
-  .uk-modal-header {
-     background-color: red;
-     color: white;
-  }
+.uk-modal-header.success {
+   background-color: green;
+   color: white;
 }
+.uk-modal-header.warning {
+   background-color: #ff7f1e;
+   color: white;
+}
+
+.dev-badge {
+  position: absolute;
+  width: 149px;
+  height: 149px;
+  top: 0;
+  left: 0;
+  border: 0;
+  z-index: 1000;
+  background-image: url("../images/development_ribbon.png");
+  background-position: center center;
+  background-repeat: no-repeat;
+
+}
+

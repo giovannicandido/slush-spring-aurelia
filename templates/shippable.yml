@@ -1,0 +1,36 @@
+language: scala
+scala:
+  - 2.11.7
+jdk:
+  - oraclejdk8
+
+cache: true
+
+env:
+  global:
+    - SHIPPABLE_REPO_DIR="/home/ciuser/$REPO_NAME"
+    # Add Github Auth Token
+
+before_install:
+  - chown -R ciuser.ciuser .
+  - setuser ciuser jspm config registries.github.auth $JSPM_GITHUB_AUTH_TOKEN
+
+before_script:
+  - export DISPLAY=:99.0
+  - export SPRING_PROFILES_ACTIVE=ci
+  - /etc/init.d/xvfb start
+  - /etc/init.d/postgresql start
+  - ./create-ci-db.sh
+
+script:
+  - setuser ciuser ./gradlew initProject
+  - setuser ciuser ./gradlew build
+  - setuser ciuser ./gradlew deployDocs
+
+after_script:
+  - setuser ciuser ./gradlew copyTestResults
+
+notifications:
+     email:
+         on_success: change
+         on_failure: always

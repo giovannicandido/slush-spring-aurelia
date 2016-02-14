@@ -15,7 +15,7 @@ module.exports = {
   output: outputRoot,
   appOutput: outputRoot + '/app',
   doc:'./doc',
-  specSrc: 'test/*.ts',
+  specSrc: ['test/**/*.ts', '**/*.d.ts','!node_modules/**/*.d.ts'],
   e2eSpecsSrc: 'test/e2e/src/*.js',
   e2eSpecsDist: 'test/e2e/dist/'
 };

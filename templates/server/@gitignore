@@ -6,3 +6,4 @@ src/it/resources/application-test.yml
 src/it/resources/application-test.properties
 build/
 src/main/resources/keycloak.json
+application_log

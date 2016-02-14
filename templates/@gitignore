@@ -25,3 +25,11 @@ nb-configuration.xml
 
 # Misc
 *.swp
+# Tomcat
+work/
+logs/
+server/logs
+# Mkdocs output
+site/
+# Shippable output
+shippable/

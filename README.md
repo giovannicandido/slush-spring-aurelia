@@ -2,7 +2,20 @@
 
 ## Usage
 
-See [INSTRUCTIONS.md]
+Install the generator with
+
+    npm install slush-spring-aurelia -g
+
+Create a empty project folder
+
+    create projectDir
+
+Generate
+
+    cd projectDir
+    slush spring-aurelia
+
+After generate see the **docs** folder
 
 ## Requirements
 
@@ -13,6 +26,8 @@ See [INSTRUCTIONS.md]
 ## About
 
 Production ready stack to start with modern *FrontEnd* with **Aurelia.io** *Backend* by *Java* **Spring Boot Framework**
+
+This project is like [JHipster](http://jhipster.github.io), but with less customizations, and with a more opined stack
 
 This is heavy opined way of building apps with this two awesome frameworks,
 and is current used in production. I take some time to extract this best practices

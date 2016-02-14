@@ -1,5 +1,5 @@
 app:
-  version: de4db33f
+  version: <%= appVersion %>
 project:
   artifactId: <%= appName %>
   name: <%= appName %>
@@ -18,7 +18,7 @@ info:
 
 spring:
   main:
-    sources: framework.Application
+    sources: info.atende.touch.Application
   thymeleaf:
     mode: LEGACYHTML5
   jpa:
@@ -27,6 +27,7 @@ spring:
     hibernate:
       naming_strategy: org.hibernate.cfg.EJB3NamingStrategy
       ddl_auto: none
+
 server:
   tomcat:
     # Write access log to target/logs/access_log.YYYY-MM-DD.log
@@ -35,6 +36,7 @@ server:
     accessLogPattern: '%h %l %u %t "%r" %s %b %{Host}i %{Location}o'
     baseDir: ''
     backgroundProcessorDelay: 1
+  port: 8080
 
 logging:
   file: logs/application_log

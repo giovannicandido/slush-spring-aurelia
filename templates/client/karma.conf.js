@@ -14,9 +14,14 @@ module.exports = function(config) {
 
     jspm: {
       // Edit this to your needs
-      loadFiles: ['dist/**/*.js', 'dist/test/**/*.js'],
+      loadFiles: ['dist/src/**/*.js', 'dist/test/**/*.js'],
       paths: {
-        '*': '*.js'
+        "*": "*",
+        "dist/vendor-build.js": "vendor-build.js",
+        "dist/app-build.js": "app-build.js",
+        "styles/*": "styles/*",
+        "github:*": "jspm_packages/github/*",
+        "npm:*": "jspm_packages/npm/*"
       }
     },
 
@@ -32,8 +37,26 @@ module.exports = function(config) {
     // test results reporter to use
     // possible values: 'dots', 'progress'
     // available reporters: https://npmjs.org/browse/keyword/karma-reporter
-    reporters: ['progress'],
+    reporters: ['junit', 'coverage', 'progress'],
 
+    //plugins: ['karma-coverage'],
+
+    preprocessors: {
+      './dist/src/**/*.js': ['coverage']
+    },
+    coverageReporter: {
+      reporters: [{
+        type: 'html',
+        dir: 'shippable/codecoverage/'
+      }, {
+        type: 'cobertura',
+        subdir: '.',
+        dir: 'shippable/codecoverage/'
+      }]
+    },
+    junitReporter: {
+      outputDir: 'shippable/testresults'
+    },
 
     // web server port
     port: 9876,

@@ -1,42 +1,41 @@
 var gulp = require('gulp');
-var karma = require('karma').server;
+var Server = require('karma').Server;
 
 /**
  * Run test once and exit
  */
 gulp.task('test',['build-test'], function (done) {
-    karma.start({
+    var server = new Server({
         configFile: __dirname + '/../../karma.conf.js',
         singleRun: true
-    }, function(e) {
-        done();
+    });
+    server.start(function(e){
+        karmaCompleted(e, done)
     });
 });
 
 /**
  * Watch for file changes and re-run tests on each change
  */
-gulp.task('tdd', function (done) {
-    karma.start({
-        configFile: __dirname + '/../../karma.conf.js'
-    }, function(e) {
-        done();
-    });
-});
+ gulp.task('tdd',['build-test'], function (done) {
+     var server = new Server({
+         configFile: __dirname + '/../../karma.conf.js'
+     });
+     server.start(function(e){
+         karmaCompleted(e, done)
+     });
+ });
 
-/**
- * Run test once with code coverage and exit
- */
-gulp.task('cover', function (done) {
-  karma.start({
-    configFile: __dirname + '/../../karma.conf.js',
-    singleRun: true,
-    reporters: ['coverage'],
-    coverageReporter: {
-      type: 'html',
-      dir: 'build/reports/coverage'
+
+function karmaCompleted(karmaResult, done) {
+    log('Karma completed');
+    if (karmaResult === 1) {
+        done('karma: tests failed with code ' + karmaResult);
+    } else {
+        done();
     }
-  }, function (e) {
-    done();
-  });
-});
+}
+
+function log(message){
+    console.log(message);
+}

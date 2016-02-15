@@ -1,6 +1,6 @@
-# Welcome to <%= appName %>
+# Welcome
 
-This is a developer focus documentation
+This is a developer focus documentation created with [MkDocs](http://mkdocs.org)
 
 If you are new to this project, I hight recommend you start reading the [Client Page](client.md). Then the [Server](server.md) page. And you are good to go
 

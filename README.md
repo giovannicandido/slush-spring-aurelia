@@ -1,5 +1,11 @@
 # Slush Spring Aurelia Generator
 
+## Requirements
+
+* NodeJS
+* Oracle JDK 8
+* npm install gulp jspm bower tsd slush -g
+
 ## Usage
 
 Install the generator with
@@ -17,12 +23,6 @@ Generate
     slush spring-aurelia
 
 After generate see the **docs** folder
-
-## Requirements
-
-* NodeJS
-* Oracle JDK 8
-* npm install gulp jspm bower slush -g
 
 ## About
 

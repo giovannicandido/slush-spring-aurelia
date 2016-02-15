@@ -28,6 +28,41 @@ Init the project
 ./gradlew initProject
 ```
 
+See **server/src/main/resources/application-dev.properties** (copy of **application-dev.properties.dist**)
+
+See **server/src/test/resources/application-test.properties** (copy of **application-test.properties.dist**)
+
+### Create databases - PostgreSQL
+
+I recommend
+
+Create a super user as your user:
+
+    # run as postgres user
+    createuser -s `whoami`
+
+Create a database for the user:
+
+    # run as your user
+    createdb `whoami`
+
+Change your password for net connection
+
+    psql
+    alter user bla with password 'newpass';
+
+    # run as your user
+    createdb project
+    createdb project_test
+
+### Running
+
+    cd client
+    gulp watch
+
+Run Spring Boot application with IDE
+
+
 ### Testing
 
 Testing all

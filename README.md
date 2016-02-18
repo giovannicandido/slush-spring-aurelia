@@ -20,7 +20,7 @@ After generate see the **docs** folder
 
 ## Requirements
 
-* NodeJS
+* NodeJS >= 4.3
 * Oracle JDK 8
 * npm install gulp jspm bower slush -g
 

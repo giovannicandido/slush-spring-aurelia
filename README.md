@@ -1,5 +1,7 @@
 # Slush Spring Aurelia Generator
 
+Note: Another aproach that deletages to aurelia-cli is mantained in https://github.com/giovannicandido/generator-spring-spa. It also integrates with angular-cli
+
 ## Requirements
 
 * NodeJS

@@ -73,7 +73,7 @@ var packageReplacements = ['info/atende/touch']
 gulp.task('run', function (done) {
 
   return gulp.src(__dirname + '/templates/**')  // Note use of __dirname to be relative to generator
-    .pipe(gulpFilter(filterFiles))
+    //.pipe(gulpFilter(filterFiles))
     .pipe(template(answers,{
       interpolate: /<%=([\s\S]+?)%>/g
     }))                 // Lodash template support
@@ -98,13 +98,8 @@ gulp.task('run', function (done) {
 });
 
 gulp.task('copy-ignored', function(done){
-  var filesToCopyTmp = filterFiles
-  filesToCopyTmp.splice(0,1)
-  var filesToCopy = filesToCopyTmp.map(function(f){
-    return __dirname + '/templates/' + f.substr(1,f.length)
-  });
 
-  return gulp.src(filesToCopy, {base: __dirname + '/templates'})
+  return  gulp.src(__dirname + '/copy/**')
     .pipe(conflict('./', {defaultChoice: 'n'}))
     .pipe(gulp.dest('./'));
 })

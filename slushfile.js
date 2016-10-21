@@ -97,6 +97,15 @@ gulp.task('run', function (done) {
     .pipe(install())                         // Run `bower install` and/or `npm install` if necessary
 });
 
+gulp.task('copy-gitignore', function(done){
+  return gulp.src(__dirname + '/templates/**/@*')
+    .pipe(rename(function(file){
+      file.basename = '.' + file.basename.slice(1)
+    }))
+    .pipe(conflict('./', {defaultChoice: 'n'}))
+    .pipe(gulp.dest('./'));
+})
+
 gulp.task('copy-ignored', function(done){
 
   return  gulp.src(__dirname + '/copy/**')
@@ -167,11 +176,11 @@ gulp.task('default', function(done){
         answersUser.projectLocation = defaults.projectLocation
         answers = answersUser
         savePreviousAnswers(answers)
-        runSequence('run', 'copy-ignored', finished)
+        runSequence('run', 'copy-ignored', 'copy-gitignore', finished)
       });
   }else{
     answers.projectLocation = defaults.projectLocation
-    runSequence('run', 'copy-ignored', finished)
+    runSequence('run', 'copy-ignored', 'copy-gitignore', finished)
   }
 })
 

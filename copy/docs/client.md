@@ -7,6 +7,7 @@ Its is optimized for use with the technologies:
 * [Aurelia][Aurelia] Framework
 * [Typescript][typescript] Language
 * [Karma][karma] for running tests
+* [Google Chrome][Google Chrome] for running tests
 * [Jasmine][jasmine] for writing tests
 * [JSPM][jspm] for package management and module system loader
 * [UIkit][uikit] as a responsive html and css template and some javascript components
@@ -73,18 +74,23 @@ JRebel plugin for the IDE of your choice, creates a run with jrebel button, you 
 
 With that knowledge you are good. But I try to explain a lot, we can resume:
 
-In resume: For the static files you just run config one file and run the project. For compiled classes use JRebel.
+In resume: For the static files you just config *resources.projectroot* in *application-dev.properties* file and run the project. For compiled classes use JRebel.
 
 ### Conclusion
 
 This is the major things you need to know about running the application. Is not straightforward, and because of that is not perfect, but understanding this behaviors you gain time on dev to production workflows, being a big win if you do that continuous (you should :-)
 
+## JSPM and Github limits
+
+There is a limit in github for non authenticated request that can hit you when installing dependencies. To overcome that see 
+[https://gist.github.com/topheman/25241e48a1b4f91ec6d4](https://gist.github.com/topheman/25241e48a1b4f91ec6d4)
 
 
 
 [Aurelia]: http://aurelia.io
 [typescript]: http://typescriptlang.org
 [karma]: http://karma-runner.github.io
+[Google Chrome]: https://www.google.com.br/chrome/browser/desktop/
 [jasmine]: http://jasmine.github.io
 [jspm]: http://jspm.io
 [uikit]: http://getuikit.com
